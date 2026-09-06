@@ -1,0 +1,67 @@
+body{
+font-family:Arial;
+margin:0;
+background:#eef2ff;
+}
+
+.hero{
+text-align:center;
+padding:60px;
+background:linear-gradient(90deg,#5f2eea,#2563eb);
+color:white;
+}
+
+.hero input{
+padding:12px;
+width:300px;
+border-radius:8px;
+border:none;
+}
+
+.hero button{
+padding:12px 20px;
+background:#ff4d6d;
+color:white;
+border:none;
+border-radius:8px;
+margin-left:10px;
+}
+
+.dashboard{
+display:flex;
+gap:30px;
+padding:40px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:25px;
+width:400px;
+border-radius:15px;
+box-shadow:0 4px 15px gray;
+}
+
+.chart{
+height:250px;
+background:
+linear-gradient(to top,
+transparent 75%,
+purple 75%);
+border-left:2px solid black;
+border-bottom:2px solid black;
+margin-top:20px;
+}
+
+ul{
+list-style:none;
+padding:0;
+}
+
+li{
+padding:10px;
+margin:8px 0;
+background:#f4f4ff;
+border-radius:8px;
+}
