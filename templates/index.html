@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Content Trend Planner</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="hero">
+
+    <h1>Technology Trends Analysis</h1>
+
+    <p>
+        Discover subtopics and trends
+        for any topic based on social media data
+    </p>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="topic"
+            placeholder="Enter trending topic"
+            required
+        >
+
+        <button type="submit">
+            Analyze Trends
+        </button>
+
+    </form>
+
+</div>
+
+
+{% if result %}
+
+<div class="dashboard">
+
+    <div class="card">
+
+        <h2>Interest Over Time</h2>
+
+        <canvas id="trendChart"></canvas>
+
+        <p>
+            Trend Score:
+            <strong>{{ result.trend_score }}%</strong>
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Trending Subtopics</h2>
+
+        <ul>
+
+            {% for idea in result.ideas %}
+
+            <li>{{ idea }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+
+        <h3>Hashtags</h3>
+
+        <ul>
+
+            {% for tag in result.hashtags %}
+
+            <li>{{ tag }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+
+        <h3>Best Posting Time</h3>
+
+        <p>{{ result.best_time }}</p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const ctx = document.getElementById('trendChart');
+
+new Chart(ctx, {
+
+    type: 'line',
+
+    data: {
+
+        labels: [
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug'
+        ],
+
+        datasets: [{
+
+            label: 'Interest Over Time',
+
+            data: {{ result.trend_data | tojson }},
+
+            borderWidth: 3,
+
+            tension: 0.4
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true
+
+    }
+
+});
+
+</script>
+
+{% endif %}
+
+</body>
+</html>
